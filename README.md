@@ -116,4 +116,4 @@ cargo test --all-targets
 
 ## License
 
-MIT OR Apache-2.0
+MIT
