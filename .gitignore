@@ -5,3 +5,8 @@
 .idea/
 .vscode/
 *.rs.bk
+
+# Prebuilt binaries (layout and README are tracked)
+/prebuilt/macos/Syphon.framework/
+/prebuilt/windows/*.dll
+/prebuilt/windows/*.lib
