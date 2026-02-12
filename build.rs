@@ -258,12 +258,31 @@ fn build_spout_stub_macos() {
 
 fn copy_dll(bin_dir: &PathBuf, dll_name: &str) {
     let src = bin_dir.join(dll_name);
-    if src.exists() {
-        if let Ok(target_dir) = env::var("CARGO_TARGET_DIR") {
-            let profile = env::var("PROFILE").unwrap_or_else(|_| "debug".to_string());
-            let dest = PathBuf::from(&target_dir).join(&profile).join(dll_name);
-            let _ = fs::copy(&src, &dest);
-        }
+    if !src.exists() {
+        return;
+    }
+
+    let profile = env::var("PROFILE").unwrap_or_else(|_| "debug".to_string());
+
+    let profile_dir = if let Ok(target_dir) = env::var("CARGO_TARGET_DIR") {
+        PathBuf::from(target_dir).join(&profile)
+    } else {
+        let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+        // OUT_DIR .../<profile>/build/<pkg>/out
+        out_dir
+            .ancestors()
+            .nth(3)
+            .map(PathBuf::from)
+            .unwrap_or_else(|| PathBuf::from("target").join(&profile))
+    };
+
+    for dest_dir in [
+        profile_dir.clone(),
+        profile_dir.join("deps"),
+        profile_dir.join("examples"),
+    ] {
+        let _ = fs::create_dir_all(&dest_dir);
+        let _ = fs::copy(&src, dest_dir.join(dll_name));
     }
 }
 
