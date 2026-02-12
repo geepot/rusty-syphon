@@ -1,0 +1,27 @@
+[package]
+name = "rusty-syphon"
+version = "0.1.0"
+edition = "2021"
+description = "Rust bindings for the Syphon framework on macOS"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Syphon/Syphon-Framework"
+
+[lib]
+name = "rusty_syphon"
+path = "src/lib.rs"
+
+[build-dependencies]
+bindgen = "0.69"
+cc = "1.0"
+
+[dependencies]
+
+[target.'cfg(target_os = "macos")'.dependencies]
+libc = "0.2"
+
+[target.'cfg(target_os = "macos")'.dev-dependencies]
+metal = "0.26"
+block = "0.1"
+
+[features]
+default = []
