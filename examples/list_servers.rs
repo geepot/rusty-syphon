@@ -4,7 +4,7 @@
 fn main() {
     #[cfg(target_os = "macos")]
     {
-        let dir = match rusty_syphon::ServerDirectory::shared() {
+        let dir = match rusty_syphon_spout::ServerDirectory::shared() {
             Some(d) => d,
             None => {
                 eprintln!("Failed to get Syphon server directory");

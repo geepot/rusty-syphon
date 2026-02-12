@@ -1,10 +1,9 @@
-//! Rust bindings for the [Syphon](https://syphon.github.io) framework on macOS.
+//! Rust bindings for [Syphon](https://syphon.github.io) (macOS) and [Spout](https://spout.zeal.co/) (Windows).
 //!
-//! Syphon allows applications to share video and still images in real time.
-//! This crate exposes:
-//! - **Server directory**: discover available Syphon servers.
-//! - **OpenGL**: `OpenGLServer`, `OpenGLClient`, `OpenGLImage` (CGL context + GL textures).
-//! - **Metal**: `MetalServer`, `MetalClient`, `MetalTexture` (MTLDevice/MTLTexture pointers).
+//! Share video frames between applications: **Syphon on macOS**, **Spout on Windows**.
+//!
+//! - **macOS**: Server directory, `SyphonOptions`, OpenGL and Metal servers/clients, CGL/GL helpers.
+//! - **Windows**: `Spout` type for sender and receiver (OpenGL textures), sender list discovery.
 
 mod ffi;
 mod safe;

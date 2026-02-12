@@ -1,22 +1,26 @@
 [package]
-name = "rusty-syphon"
+name = "rusty-syphon-spout"
 version = "0.1.0"
 edition = "2021"
-description = "Rust bindings for the Syphon framework on macOS"
+description = "Rust bindings for Syphon (macOS) and Spout (Windows) — share video frames between applications"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/Syphon/Syphon-Framework"
+repository = "https://github.com/geepot/rusty-syphon-spout"
 
 [lib]
-name = "rusty_syphon"
+name = "rusty_syphon_spout"
 path = "src/lib.rs"
 
 [build-dependencies]
 bindgen = "0.69"
 cc = "1.0"
+cmake = "0.1"
 
 [dependencies]
 
 [target.'cfg(target_os = "macos")'.dependencies]
+libc = "0.2"
+
+[target.'cfg(target_os = "windows")'.dependencies]
 libc = "0.2"
 
 [target.'cfg(target_os = "macos")'.dev-dependencies]
